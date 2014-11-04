@@ -1,4 +1,4 @@
-Template.profileCreate.events({
+Template.profileCreate.event({
   'submit form': function(e) {
     e.preventDefault();
 
