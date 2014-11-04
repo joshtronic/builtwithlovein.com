@@ -11,4 +11,6 @@ iron:router
 ian:accounts-ui-bootstrap-3
 accounts-password
 sacha:spin
+jparker:gravatar
+jparker:crypto-md5
 
