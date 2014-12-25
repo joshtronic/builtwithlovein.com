@@ -15,7 +15,29 @@
           </a>
         </div>
         <div class="collapse navbar-collapse" id="navigation">
+          <ul class="nav navbar-nav">
+          </ul>
           <ul class="nav navbar-nav navbar-right">
+            {{#if currentUser}}
+              <li class="dropdown">
+                <a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#">
+                  Profiles
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    {{#if userProfiles}}
+                      {{#each userProfiles}}
+                        <li><a href="#">TODO profile link</a></li>
+                      {{/each}}
+                      <li class="divider"></li>
+                    {{/if}}
+                  <li><a href="{{pathFor 'profileNew'}}">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                    New Profile
+                  </a></li>
+                </ul>
+              </li>
+            {{/if}}
             {{>loginButtons}}
           </ul>
         </div>

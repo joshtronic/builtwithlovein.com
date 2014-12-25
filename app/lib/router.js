@@ -1,10 +1,34 @@
 Router.configure({
   layoutTemplate: 'layout',
   loadingTemplate: 'loading',
-  notFoundTemplate: 'notFound',
+  notFoundTemplate: 'notFound'
+});
+
+var requireLogin = function() {
+  if (!Meteor.user()) {
+    if (Meteor.loggingIn()) {
+      this.render(this.loadingTemplate);
+    } else {
+      this.render('accessDenied');
+    }
+  } else {
+    this.next();
+  }
+}
+
+Router.route('/', {
+  name: 'globe',
   waitOn: function() {
     return Meteor.subscribe('profiles');
   }
 });
 
-Router.route('/', {name: 'globe'});
+Router.route('/profile/new', {
+  name: 'profileNew',
+  waitOn: function() {
+    return Meteor.subscribe('regions');
+  }
+});
+
+//Router.onBeforeAction('dataNotFound', {only: 'postPage'});
+Router.onBeforeAction(requireLogin,   {only: 'profileNew'});
