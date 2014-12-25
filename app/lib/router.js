@@ -30,5 +30,17 @@ Router.route('/profile/new', {
   }
 });
 
-//Router.onBeforeAction('dataNotFound', {only: 'postPage'});
-Router.onBeforeAction(requireLogin,   {only: 'profileNew'});
+Router.route('/:_slug', {
+  name: 'profile',
+  data: function() {
+    return Profiles.findOne(this.params.name);
+  }
+});
+
+Router.onBeforeAction('dataNotFound', {
+  only: 'profile'
+});
+
+Router.onBeforeAction(requireLogin, {
+  only: 'profileNew'
+});
