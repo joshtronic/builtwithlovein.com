@@ -16,9 +16,31 @@ Meteor.methods({
       region: String
     });
 
+    // TODO get slug working
+    //profileAttributes.slug = URLify2(profileAttributes.slug);
+
+    var region = Regions.findOne({
+      _id: new Meteor.Collection.ObjectID(profileAttributes.region)
+    });
+
+    if (!region) {
+      throw new Meteor.Error(500, 'Error: Invalid region.');
+    }
+
+    if (!profileAttributes.name.length || !profileAttributes.slug.length) {
+      throw new Meteor.Error(500, 'Error: All fields are required.');
+    }
+
+    if (Profiles.find({slug: profileAttributes.slug}).count()) {
+      throw new Meteor.Error(500, 'Error: Profile name is already in use.');
+    }
+
     var user    = Meteor.user();
-    var profile = _.extend(postAttributes, {
+    var profile = _.extend(profileAttributes, {
       userId:  user._id,
+      country: region.country,
+      state:   region.state,
+      city:    region.city,
       created: new Date()
     });
 

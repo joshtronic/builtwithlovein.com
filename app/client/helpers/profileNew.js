@@ -14,13 +14,12 @@ Template.profileNew.events({
       region: $(e.target).find('#region').val()
     };
 
-    Meteor.call('profileInsert', post, function(err, result) {
+    Meteor.call('profileInsert', profile, function(err, result) {
       if (err) {
         return alert(err.reason);
       }
 
-      // TODO go to profile /name
-      Router.go('globe', {_id: result._id});
+      Router.go('profile', {name: result.slug});
     });
   }
 });
