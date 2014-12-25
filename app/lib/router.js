@@ -1,6 +1,6 @@
 Router.configure({
-  layoutTemplate: 'layout',
-  loadingTemplate: 'loading',
+  layoutTemplate:   'layout',
+  loadingTemplate:  'loading',
   notFoundTemplate: 'notFound'
 });
 
@@ -17,23 +17,26 @@ var requireLogin = function() {
 }
 
 Router.route('/', {
-  name: 'globe',
+  name:   'globe',
   waitOn: function() {
     return Meteor.subscribe('profiles');
   }
 });
 
 Router.route('/profile/new', {
-  name: 'profileNew',
+  name:   'profileNew',
   waitOn: function() {
     return Meteor.subscribe('regions');
   }
 });
 
-Router.route('/:_slug', {
+Router.route('/:slug', {
   name: 'profile',
+  waitOn: function() {
+    return Meteor.subscribe('profiles');
+  },
   data: function() {
-    return Profiles.findOne(this.params.name);
+    return Profiles.findOne({slug: this.params.slug});
   }
 });
 
@@ -44,3 +47,4 @@ Router.onBeforeAction('dataNotFound', {
 Router.onBeforeAction(requireLogin, {
   only: 'profileNew'
 });
+
