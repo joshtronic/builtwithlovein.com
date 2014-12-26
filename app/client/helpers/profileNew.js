@@ -1,9 +1,3 @@
-Template.profileNew.helpers({
-  regions: function() {
-    return Regions.find({});
-  },
-});
-
 Template.profileNew.events({ 
   'submit form': function(e) {
     e.preventDefault();

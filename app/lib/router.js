@@ -30,6 +30,19 @@ Router.route('/profile/new', {
   }
 });
 
+Router.route('/profile/:_id/edit', {
+  name:   'profileEdit',
+  waitOn: function() {
+    return [
+      Meteor.subscribe('profiles'),
+      Meteor.subscribe('regions')
+    ];
+  },
+  data: function() {
+    return Profiles.findOne({_id: this.params._id});
+  }
+});
+
 Router.route('/:slug', {
   name: 'profile',
   waitOn: function() {
@@ -45,6 +58,9 @@ Router.onBeforeAction('dataNotFound', {
 });
 
 Router.onBeforeAction(requireLogin, {
-  only: 'profileNew'
+  only: [
+    'profileNew',
+    'profileEdit'
+  ]
 });
 

@@ -1,3 +1,7 @@
+Handlebars.registerHelper('regions', function() {
+  return Regions.find({});
+});
+
 Handlebars.registerHelper('hasProfiles', function(userId) {
   return Profiles.find({userId: userId}, {sort:{name: 1}}).count();
 });
