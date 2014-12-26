@@ -25,12 +25,12 @@
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    {{#if userProfiles}}
-                      {{#each userProfiles}}
-                        <li><a href="#">TODO profile link</a></li>
-                      {{/each}}
-                      <li class="divider"></li>
-                    {{/if}}
+                  {{#if hasProfiles currentUser._id}}
+                    {{#each userProfiles currentUser._id}}
+                      <li><a href="/{{slug}}">{{name}}</a></li>
+                    {{/each}}
+                    <li class="divider"></li>
+                  {{/if}}
                   <li><a href="{{pathFor 'profileNew'}}">
                     <span class="glyphicon glyphicon-plus-sign"></span>
                     New Profile
