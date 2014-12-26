@@ -16,6 +16,17 @@ var requireLogin = function() {
   }
 }
 
+Router.onBeforeAction('dataNotFound', {
+  only: 'profile'
+});
+
+Router.onBeforeAction(requireLogin, {
+  only: [
+    'profileNew',
+    'profileEdit'
+  ]
+});
+
 Router.route('/', {
   name:   'globe',
   waitOn: function() {
@@ -39,7 +50,7 @@ Router.route('/profile/:_id/edit', {
     ];
   },
   data: function() {
-    return Profiles.findOne({_id: this.params._id});
+    return Profiles.findOne(this.params._id);
   }
 });
 
@@ -51,16 +62,5 @@ Router.route('/:slug', {
   data: function() {
     return Profiles.findOne({slug: this.params.slug});
   }
-});
-
-Router.onBeforeAction('dataNotFound', {
-  only: 'profile'
-});
-
-Router.onBeforeAction(requireLogin, {
-  only: [
-    'profileNew',
-    'profileEdit'
-  ]
 });
 
