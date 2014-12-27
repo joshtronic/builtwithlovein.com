@@ -53,9 +53,7 @@ Meteor.methods({
 
     var profileId = Profiles.insert(profile);
 
-    return {
-      _id: profileId
-    };
+    return {slug: profile.slug};
   },
   profileUpdate: function(profileId, profileAttributes) {
     check(Meteor.userId(), String);
@@ -108,9 +106,7 @@ Meteor.methods({
       }
     });
 
-    return {
-      _id: profileId
-    };
+    return {slug: profile.slug};
   }
 });
 

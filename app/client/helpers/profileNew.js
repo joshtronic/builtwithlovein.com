@@ -13,7 +13,7 @@ Template.profileNew.events({
         return alert(err.reason);
       }
 
-      Router.go('profile', {name: result.slug});
+      Router.go('profile', {slug: result.slug});
     });
   }
 });
