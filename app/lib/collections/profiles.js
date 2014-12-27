@@ -1,23 +1,5 @@
 Profiles = new Mongo.Collection('profiles');
 
-Profiles.allow({
-  insert: function(userId, profile) {
-    return !!userId;
-  }/*,
-  update: function(userId, profile) {
-    return ownsDocument(userId, profile);
-  }
-  */
-});
-
-/*
-Profiles.deny({
-  update: function(userId, profile, fields) {
-    return (_.without(fields, 'name', 'slug', 'region').length > 0);
-  }
-});
-*/
-
 Meteor.methods({
   profileInsert: function(profileAttributes) {
     check(Meteor.userId(), String);
@@ -43,13 +25,16 @@ Meteor.methods({
       throw new Meteor.Error(500, 'Error: Profile name is already in use.');
     }
 
-    var profile = _.extend(profileAttributes, {
-      userId:   Meteor.userId(),
-      country:  region.country,
-      state:    region.state,
+    var profile = {
       city:     region.city,
-      created:  new Date()
-    });
+      country:  region.country,
+      created:  new Date(),
+      name:     profileAttributes.name,
+      slug:     profileAttributes.slug,
+      state:    region.state,
+      regionId: profileAttributes.regionId,
+      userId:   Meteor.userId(),
+    };
 
     var profileId = Profiles.insert(profile);
 
@@ -81,8 +66,8 @@ Meteor.methods({
 
     if (!existingProfile) {
       throw new Meteor.Error(500, 'Error: Invalid profile ID.');
-    // } else if (existingProfile.userId !== Meteor.userId()) {
-    //   throw new Meteor.Error(500, 'Error: You cannot edit other user’s profiles.');
+    } else if (existingProfile.userId !== Meteor.userId()) {
+      throw new Meteor.Error(500, 'Error: You cannot edit other user’s profiles.');
     }
 
     var slugProfile = Profiles.findOne({slug: profileAttributes.slug});
@@ -91,20 +76,17 @@ Meteor.methods({
       throw new Meteor.Error(500, 'Error: Profile name is already in use.');
     }
 
-    var profile = _.extend(profileAttributes, {
-      userId:   Meteor.userId(),
-      country:  region.country,
-      state:    region.state,
-      city:     region.city,
-      updated:  new Date()
-    });
+    var profile = {
+      city:      region.city,
+      country:   region.country,
+      created:   new Date(),
+      name:      profileAttributes.name,
+      slug:      profileAttributes.slug,
+      state:     region.state,
+      regionId:  profileAttributes.regionId,
+    };
 
-    Profiles.update(profileId, {$set: profile}, function(err) {
-      throw new Meteor.Error(500, profileId);
-      if (err) {
-        throw new Meteor.Error(500, 'Error: ' + error.reason);
-      }
-    });
+    Profiles.update(profileId, {$set: profile});
 
     return {slug: profile.slug};
   }

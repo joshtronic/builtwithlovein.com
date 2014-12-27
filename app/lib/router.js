@@ -1,7 +1,13 @@
 Router.configure({
-  layoutTemplate:   'layout',
-  loadingTemplate:  'loading',
-  notFoundTemplate: 'notFound'
+  layoutTemplate: 'layout',
+  loadingTemplate: 'loading',
+  notFoundTemplate: 'notFound',
+  waitOn: function() {
+    return [
+      Meteor.subscribe('profiles'),
+      Meteor.subscribe('regions')
+    ];
+  }
 });
 
 var requireLogin = function() {
@@ -28,37 +34,25 @@ Router.onBeforeAction(requireLogin, {
 });
 
 Router.route('/', {
-  name:   'globe',
-  waitOn: function() {
-    return Meteor.subscribe('profiles');
-  }
+  name: 'globe'
 });
 
 Router.route('/profile/new', {
-  name:   'profileNew',
-  waitOn: function() {
-    return Meteor.subscribe('regions');
-  }
+  name: 'profileNew'
 });
 
 Router.route('/profile/:_id/edit', {
-  name:   'profileEdit',
-  waitOn: function() {
-    return [
-      Meteor.subscribe('profiles'),
-      Meteor.subscribe('regions')
-    ];
-  },
+  name: 'profileEdit',
   data: function() {
-    return Profiles.findOne(this.params._id);
+    return Profiles.findOne({
+      _id:    this.params._id,
+      userId: Meteor.userId()
+    });
   }
 });
 
 Router.route('/:slug', {
   name: 'profile',
-  waitOn: function() {
-    return Meteor.subscribe('profiles');
-  },
   data: function() {
     return Profiles.findOne({slug: this.params.slug});
   }
