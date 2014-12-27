@@ -3,9 +3,9 @@ Template.profileNew.events({
     e.preventDefault();
 
     var profile = {
-      name:   $(e.target).find('#name').val(),
-      slug:   $(e.target).find('#slug').val(),
-      region: $(e.target).find('#region').val()
+      name:     $(e.target).find('#name').val(),
+      slug:     $(e.target).find('#slug').val(),
+      regionId: $(e.target).find('#region').val()
     };
 
     Meteor.call('profileInsert', profile, function(err, result) {
