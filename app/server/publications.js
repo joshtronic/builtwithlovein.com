@@ -3,5 +3,14 @@ Meteor.publish('regions', function() {
 });
 
 Meteor.publish('profiles', function() {
-  return Profiles.find();
+  return Profiles.find({}, {
+    fields: {
+      gravatarEmail: false
+    }
+  });
 });
+
+Meteor.publish('userProfile', function() {
+  return Profiles.find({});
+});
+

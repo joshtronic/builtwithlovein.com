@@ -1,11 +1,11 @@
 Router.configure({
-  layoutTemplate: 'layout',
-  loadingTemplate: 'loading',
+  layoutTemplate:   'layout',
+  loadingTemplate:  'loading',
   notFoundTemplate: 'notFound',
-  trackPageView: true,
+  trackPageView:    true,
   waitOn: function() {
     return [
-      Meteor.subscribe('profiles'),
+      Meteor.subscribe('profiles'), 
       Meteor.subscribe('regions')
     ];
   },
@@ -44,6 +44,9 @@ Router.route('/profile/new', {
 
 Router.route('/profile/:_id/edit', {
   name: 'profileEdit',
+  waitOn: function() {
+    return Meteor.subscribe('userProfile');
+  },
   data: function() {
     return Profiles.findOne({
       _id:    this.params._id,
