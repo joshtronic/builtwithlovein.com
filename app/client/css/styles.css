@@ -4,4 +4,10 @@ body {
 
 .heart {
   color: #900;
+  font-size: 1.3em;
+}
+
+.logo-mark {
+  float: left;
+  margin: -6px 5px 0 0;
 }
