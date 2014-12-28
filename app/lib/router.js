@@ -2,12 +2,13 @@ Router.configure({
   layoutTemplate: 'layout',
   loadingTemplate: 'loading',
   notFoundTemplate: 'notFound',
+  trackPageView: true,
   waitOn: function() {
     return [
       Meteor.subscribe('profiles'),
       Meteor.subscribe('regions')
     ];
-  }
+  },
 });
 
 var requireLogin = function() {
