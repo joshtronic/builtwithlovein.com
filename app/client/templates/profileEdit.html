@@ -16,11 +16,17 @@
     <div class="form-group">
       <label class="control-label" for="region">Region</label>
       <div class="controls">
-        <select name="region" id="region">
+        <select name="region" id="region" class="form-control">
           {{#each regions}}
             <option value="{{_id.toHexString}}">{{name}}</option>
           {{/each}}
         </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="name">Gravatar Email <small class="text-muted">Private</small></label>
+      <div class="controls">
+        <input name="gravatar" id="gravatar" type="text" value="{{gravatarEmail}}" placeholder="Your gravatar email address" class="form-control">
       </div>
     </div>
     <div class="form-group">

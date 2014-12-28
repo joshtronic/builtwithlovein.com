@@ -5,10 +5,11 @@ Template.profileEdit.events({
     var currentId = this._id;
 
     var profile = {
-      name:        $(e.target).find('#name').val(),
-      slug:        $(e.target).find('#slug').val(),
-      regionId:    $(e.target).find('#region').val(),
       description: $(e.target).find('#description').val(),
+      gravatar:    $(e.target).find('#gravatar').val(),
+      name:        $(e.target).find('#name').val(),
+      regionId:    $(e.target).find('#region').val(),
+      slug:        $(e.target).find('#slug').val(),
       twitter:     $(e.target).find('#twitter').val(),
     };
 

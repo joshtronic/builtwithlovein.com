@@ -89,17 +89,21 @@ Meteor.methods({
       throw new Meteor.Error(400, 'Error: Slug is already in use.');
     }
 
+    var md5 = Meteor.npmRequire('MD5');
+
     // Assembles the document
     var profile = {
-      city:        region.city,
-      country:     region.country,
-      created:     new Date(),
-      description: profileAttributes.description,
-      name:        profileAttributes.name,
-      regionId:    profileAttributes.regionId,
-      slug:        profileAttributes.slug,
-      state:       region.state,
-      twitter:     profileAttributes.twitter,
+      city:          region.city,
+      country:       region.country,
+      created:       new Date(),
+      description:   profileAttributes.description,
+      gravatarEmail: profileAttributes.gravatar,
+      gravatarHash:  md5(profileAttributes.gravatar.trim().toLowerCase()),
+      name:          profileAttributes.name,
+      regionId:      profileAttributes.regionId,
+      slug:          profileAttributes.slug,
+      state:         region.state,
+      twitter:       profileAttributes.twitter,
     };
 
     // Updates the document
