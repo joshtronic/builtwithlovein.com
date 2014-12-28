@@ -69,39 +69,24 @@ Router.route('/about', {
   name: 'about',
 });
 
-/*
-Router.router('/:country', {
-  name: 'country',
-  data: function() {
-    console.log();
-  },
-});
-*/
+Router.route('/:slug', function() {
+  var regionFind = {country: this.params.slug};
+  var region     = Regions.findOne(regionFind);
 
-Router.route('/:country', {
-  name: 'country',
-  data: function() {
-    var regionFind = {country: this.params.country};
-    var region     = Regions.findOne(regionFind);
+  if (region) {
+    this.render('country', {data: {
+      region:   region,
+      profiles: Profiles.find(regionFind, {sort: {updated: -1}}),
+    }});
+  } else {
+    var profile = Profiles.findOne({slug: this.params.slug})
 
-    if (region) {
-      return {
-        region:   region,
-        profiles: Profiles.find(regionFind, {sort: {updated: -1}}),
-      };
+    if (profile) {
+      this.render('profile', {data: profile});
+    } else {
+      this.render('notFound');
     }
-  },
-});
-
-Router.route('/:slug', {
-  name: 'profile',
-  data: function() {
-    return Profiles.findOne({slug: this.params.slug});
-  },
-//   action: function() {
-//     Profiles.update(this.data()._id, {shit:"fuck"});
-//     this.render();
-//   },
+  }
 });
 
 Router.route('/:country/:state', {
