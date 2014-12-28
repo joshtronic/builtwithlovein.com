@@ -1,0 +1,15 @@
+<template name="city">
+  <h1>
+    <a href="/"><span class="glyphicon glyphicon-globe text-muted"></span></a>
+    <a href="/{{region.country}}">{{region.country.toUpperCase}}</a>
+    <a href="/"><span class="glyphicon glyphicon-chevron-right text-muted"></span></a>
+    <a href="/{{region.country}}/{{region.state}}">{{region.state.toUpperCase}}</a>
+    <a href="/"><span class="glyphicon glyphicon-chevron-right text-muted"></span></a>
+    {{region.city.toUpperCase}}
+  </h1>
+  <div class="row">
+    {{#each profiles}}
+      {{>profilePreview}}
+    {{/each}}
+  </div>
+</template>

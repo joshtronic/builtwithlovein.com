@@ -10,3 +10,6 @@ Handlebars.registerHelper('userProfiles', function(userId) {
   return Profiles.find({userId: userId}, {sort:{name: 1}});
 });
 
+Handlebars.registerHelper('gravatar', function(gravatarHash, name) {
+  return 'http://www.gravatar.com/avatar/' + gravatarHash + '?s=400&r=pg&d=retro';
+});

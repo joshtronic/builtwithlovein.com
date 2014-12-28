@@ -24,7 +24,12 @@ var requireLogin = function() {
 }
 
 Router.onBeforeAction('dataNotFound', {
-  only: 'profile',
+  only: [
+    'city',
+    'country',
+    'profile',
+    'state',
+  ],
 });
 
 Router.onBeforeAction(requireLogin, {
@@ -36,6 +41,11 @@ Router.onBeforeAction(requireLogin, {
 
 Router.route('/', {
   name: 'globe',
+  data: function() {
+    return {
+      profiles: Profiles.find({}, {sort: {updated: -1}}),
+    };
+  },
 });
 
 Router.route('/profile/new', {
@@ -59,6 +69,30 @@ Router.route('/about', {
   name: 'about',
 });
 
+/*
+Router.router('/:country', {
+  name: 'country',
+  data: function() {
+    console.log();
+  },
+});
+*/
+
+Router.route('/:country', {
+  name: 'country',
+  data: function() {
+    var regionFind = {country: this.params.country};
+    var region     = Regions.findOne(regionFind);
+
+    if (region) {
+      return {
+        region:   region,
+        profiles: Profiles.find(regionFind, {sort: {updated: -1}}),
+      };
+    }
+  },
+});
+
 Router.route('/:slug', {
   name: 'profile',
   data: function() {
@@ -68,5 +102,44 @@ Router.route('/:slug', {
 //     Profiles.update(this.data()._id, {shit:"fuck"});
 //     this.render();
 //   },
+});
+
+Router.route('/:country/:state', {
+  name: 'state',
+  data: function() {
+    var regionFind = {
+      country: this.params.country,
+      state:   this.params.state,
+    };
+
+    var region = Regions.findOne(regionFind);
+
+    if (region) {
+      return {
+        region:   region,
+        profiles: Profiles.find(regionFind, {sort: {updated: -1}}),
+      };
+    }
+  },
+});
+
+Router.route('/:country/:state/:city', {
+  name: 'city',
+  data: function() {
+    var regionFind = {
+      country: this.params.country,
+      state:   this.params.state,
+      city:    this.params.city,
+    };
+
+    var region = Regions.findOne(regionFind);
+
+    if (region) {
+      return {
+        region:   region,
+        profiles: Profiles.find(regionFind, {sort: {updated: -1}}),
+      };
+    }
+  },
 });
 

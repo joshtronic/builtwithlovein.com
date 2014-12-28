@@ -1,7 +1,7 @@
 <template name="profile">
   <div class="row">
     <div class="col-xs-12- col-sm-4">
-      <img src="http://www.gravatar.com/avatar/{{gravatarHash}}?s=200&r=pg&d=retro" class="img-responsive img-circle">
+      <img src="{{gravatar gravatarHash name}}" class="img-responsive img-circle">
     </div>
     <div class="col-xs-12 col-sm-8">
       <h1>
@@ -24,6 +24,5 @@
       <p class="lead">{{description}}</p>
     </div>
   </div>
-  {{trackView}}
 </template>
 

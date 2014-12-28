@@ -1,5 +1,9 @@
 <template name="globe">
-  <h1>Globe / Home</h1>
-  <p>Top level user list</p>
+  <h1>Across the Globe</h1>
+  <div class="row">
+    {{#each profiles}}
+      {{>profilePreview}}
+    {{/each}}
+  </div>
 </template>
 

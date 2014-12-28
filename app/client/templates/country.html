@@ -1,0 +1,12 @@
+<template name="country">
+  <h1>
+    <a href="/"><span class="glyphicon glyphicon-globe text-muted"></span></a>
+    {{region.country.toUpperCase}}
+  </h1>
+  <div class="row">
+    {{#each profiles}}
+      {{>profilePreview}}
+    {{/each}}
+  </div>
+</template>
+

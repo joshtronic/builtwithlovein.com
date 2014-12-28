@@ -38,6 +38,7 @@ Meteor.methods({
       slug:     profileAttributes.slug,
       state:    region.state,
       regionId: profileAttributes.regionId,
+      updated:  new Date(),
       userId:   Meteor.userId(),
     };
 
@@ -91,6 +92,14 @@ Meteor.methods({
 
     var md5 = Meteor.npmRequire('MD5');
 
+    profileAttributes.gravatar = profileAttributes.gravatar.trim();
+
+    if (profileAttributes.gravatar === '') {
+      var gravatarHash = md5('BWLI:' + profileAttributes.name);
+    } else {
+      var gravatarHash = md5(profileAttributes.gravatar.toLowerCase());
+    }
+
     // Assembles the document
     var profile = {
       city:          region.city,
@@ -98,12 +107,13 @@ Meteor.methods({
       created:       new Date(),
       description:   profileAttributes.description,
       gravatarEmail: profileAttributes.gravatar,
-      gravatarHash:  md5(profileAttributes.gravatar.trim().toLowerCase()),
+      gravatarHash:  gravatarHash,
       name:          profileAttributes.name,
       regionId:      profileAttributes.regionId,
       slug:          profileAttributes.slug,
       state:         region.state,
       twitter:       profileAttributes.twitter,
+      updated:       new Date(),
     };
 
     // Updates the document
