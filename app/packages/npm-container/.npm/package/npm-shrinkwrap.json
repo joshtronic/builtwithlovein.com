@@ -10,6 +10,9 @@
           "version": "0.0.1"
         }
       }
+    },
+    "remoteip": {
+      "version": "0.1.0"
     }
   }
 }

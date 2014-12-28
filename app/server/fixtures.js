@@ -7,3 +7,4 @@ if (Regions.find().count() === 0) {
     city:    'tampa'
   });
 }
+

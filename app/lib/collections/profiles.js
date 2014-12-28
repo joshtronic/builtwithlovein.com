@@ -111,6 +111,6 @@ Meteor.methods({
 
     // Returns the slug for redirection
     return {slug: profile.slug};
-  }
+  },
 });
 

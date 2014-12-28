@@ -11,6 +11,8 @@ Meteor.publish('profiles', function() {
 });
 
 Meteor.publish('userProfile', function() {
-  return Profiles.find({});
+  if (this.userId) {
+    return Profiles.find({userId: this.userId});
+  }
 });
 

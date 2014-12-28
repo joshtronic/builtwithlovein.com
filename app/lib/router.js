@@ -6,7 +6,7 @@ Router.configure({
   waitOn: function() {
     return [
       Meteor.subscribe('profiles'), 
-      Meteor.subscribe('regions')
+      Meteor.subscribe('regions'),
     ];
   },
 });
@@ -24,22 +24,22 @@ var requireLogin = function() {
 }
 
 Router.onBeforeAction('dataNotFound', {
-  only: 'profile'
+  only: 'profile',
 });
 
 Router.onBeforeAction(requireLogin, {
   only: [
     'profileNew',
-    'profileEdit'
+    'profileEdit',
   ]
 });
 
 Router.route('/', {
-  name: 'globe'
+  name: 'globe',
 });
 
 Router.route('/profile/new', {
-  name: 'profileNew'
+  name: 'profileNew',
 });
 
 Router.route('/profile/:_id/edit', {
@@ -50,19 +50,23 @@ Router.route('/profile/:_id/edit', {
   data: function() {
     return Profiles.findOne({
       _id:    this.params._id,
-      userId: Meteor.userId()
+      userId: Meteor.userId(),
     });
-  }
+  },
 });
 
 Router.route('/about', {
-  name: 'about'
+  name: 'about',
 });
 
 Router.route('/:slug', {
   name: 'profile',
   data: function() {
     return Profiles.findOne({slug: this.params.slug});
-  }
+  },
+//   action: function() {
+//     Profiles.update(this.data()._id, {shit:"fuck"});
+//     this.render();
+//   },
 });
 
