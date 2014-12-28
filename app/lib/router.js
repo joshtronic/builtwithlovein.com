@@ -52,6 +52,10 @@ Router.route('/profile/:_id/edit', {
   }
 });
 
+Router.route('/about', {
+  name: 'about'
+});
+
 Router.route('/:slug', {
   name: 'profile',
   data: function() {
