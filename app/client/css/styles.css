@@ -7,7 +7,14 @@ body {
   font-size: 1.3em;
 }
 
+.jumbotron {
+  background-image: url('/img/globe.jpg');
+  background-size: 100%;
+  color: #fff;
+}
+
 .logo-mark {
   float: left;
   margin: -6px 5px 0 0;
 }
+
