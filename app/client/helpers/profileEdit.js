@@ -5,9 +5,11 @@ Template.profileEdit.events({
     var currentId = this._id;
 
     var profile = {
-      name:     $(e.target).find('#name').val(),
-      slug:     $(e.target).find('#slug').val(),
-      regionId: $(e.target).find('#region').val()
+      name:        $(e.target).find('#name').val(),
+      slug:        $(e.target).find('#slug').val(),
+      regionId:    $(e.target).find('#region').val(),
+      description: $(e.target).find('#description').val(),
+      twitter:     $(e.target).find('#twitter').val(),
     };
 
     Meteor.call('profileUpdate', currentId, profile, function(err, result) {

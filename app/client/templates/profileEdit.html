@@ -2,25 +2,40 @@
   <h1>Edit Profile</h1>
   <form class="main form">
     <div class="form-group">
-      <label class="control-label" for="url">Display Name</label>
+      <label class="control-label" for="name">Name</label>
       <div class="controls">
-        <input name="name" id="name" type="text" value="{{name}}" placeholder="Your name or the name of your product or business" class="form-control">
+        <input name="name" id="name" type="text" value="{{name}}" placeholder="Your name, the name of your product or the name of your business" class="form-control">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label" for="title">Profile Name</label>
+      <label class="control-label" for="title">Slug</label>
       <div class="controls">
-        <input name="slug" id="slug" type="text" value="{{slug}}" placeholder="Unique identifier for your profile" class="form-control">
+        <input name="slug" id="slug" type="text" value="{{slug}}" placeholder="Unique identifier for your profile. At least 3 characters; letters, numbers and _ (underscores) only" class="form-control">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label" for="title">Region</label>
+      <label class="control-label" for="region">Region</label>
       <div class="controls">
         <select name="region" id="region">
           {{#each regions}}
             <option value="{{_id.toHexString}}">{{name}}</option>
           {{/each}}
         </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="description">Description</label>
+      <div class="controls">
+        <textarea name="description" id="description" class="form-control">{{description}}</textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="name">Twitter Handle</label>
+      <div class="controls">
+        <div class="input-group">
+          <div class="input-group-addon">@</div>
+          <input name="twitter" id="twitter" type="text" value="{{twitter}}" placeholder="Your Twitter handle, without the @" class="form-control">
+        </div>
       </div>
     </div>
     <input type="submit" value="Save Profile" class="btn btn-primary"/>
