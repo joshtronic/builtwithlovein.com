@@ -100,6 +100,12 @@ Meteor.methods({
       var gravatarHash = md5(profileAttributes.gravatar.toLowerCase());
     }
 
+    if (profileAttributes.website.trim() !== '') {
+      if (profileAttributes.website.indexOf('://') === -1) {
+        profileAttributes.website = 'http://' + profileAttributes.website;
+      }
+    }
+
     // Assembles the document
     var profile = {
       city:          region.city,
@@ -113,6 +119,7 @@ Meteor.methods({
       slug:          profileAttributes.slug,
       state:         region.state,
       twitter:       profileAttributes.twitter,
+      website:       profileAttributes.website,
       updated:       new Date(),
     };
 

@@ -11,6 +11,7 @@ Template.profileEdit.events({
       regionId:    $(e.target).find('#region').val(),
       slug:        $(e.target).find('#slug').val(),
       twitter:     $(e.target).find('#twitter').val(),
+      website:     $(e.target).find('#website').val(),
     };
 
     Meteor.call('profileUpdate', currentId, profile, function(err, result) {

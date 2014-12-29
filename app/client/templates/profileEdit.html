@@ -26,13 +26,13 @@
     <div class="form-group">
       <label class="control-label" for="name">Gravatar Email <small class="text-muted">Private</small></label>
       <div class="controls">
-        <input name="gravatar" id="gravatar" type="text" value="{{gravatarEmail}}" placeholder="Your gravatar email address" class="form-control">
+        <input name="gravatar" id="gravatar" type="text" value="{{gravatarEmail}}" placeholder="Your gravatar email address (for your profile photo)" class="form-control">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label" for="description">Description</label>
+      <label class="control-label" for="name">Website</label>
       <div class="controls">
-        <textarea name="description" id="description" class="form-control">{{description}}</textarea>
+        <input name="website" id="website" type="text" value="{{website}}" placeholder="Link to your homepage, blog, portfolio or whatever" class="form-control">
       </div>
     </div>
     <div class="form-group">
@@ -42,6 +42,12 @@
           <div class="input-group-addon">@</div>
           <input name="twitter" id="twitter" type="text" value="{{twitter}}" placeholder="Your Twitter handle, without the @" class="form-control">
         </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="description">Description</label>
+      <div class="controls">
+        <textarea name="description" id="description" class="form-control">{{description}}</textarea>
       </div>
     </div>
     <input type="submit" value="Save Profile" class="btn btn-primary"/>
