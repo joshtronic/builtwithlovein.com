@@ -1,4 +1,16 @@
 <template name="profile">
+  {{#if currentUser}}
+    {{#if isOwner}}
+      <div class="alert alert-info row">
+        <div class="col-xs-12 col-sm-6">
+          <h3 class="alert-link">Don’t forget to show your pride on your site:</h3>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <input type="text" value="Built with &hearts; in <a href='http://builtwithlove.in/{{slug}}'>{{uppercaseFirst city}}, {{state.toUpperCase}}</a>" class="form-control">
+        </div>
+      </div>
+    {{/if}}
+  {{/if}}
   <div class="row">
     <div class="col-xs-12- col-sm-4">
       <img src="{{gravatar gravatarHash name}}" class="img-responsive img-circle">
