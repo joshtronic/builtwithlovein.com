@@ -18,7 +18,7 @@ Template.profileEdit.events({
         return alert(err.reason);
       }
 
-      Router.go('profile', {slug: result.slug});
+      Router.go('/' + result.slug);
     });
   }
 });

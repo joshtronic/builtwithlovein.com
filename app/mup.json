@@ -12,7 +12,7 @@
   "nodeVersion": "0.10.33",
   "setupPhantom": false,
   "appName": "BuiltWithLoveIn",
-  "app": "~/Code/builtwithlovein.com/app",
+  "app": "~/Sites/builtwithlovein.com/app",
 
   "env": {
     "PORT": 8371,
