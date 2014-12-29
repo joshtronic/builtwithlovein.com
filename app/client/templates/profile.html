@@ -26,42 +26,45 @@
           {{/if}}
         {{/if}}
       </h1>
-      <div class="col-xs-12 col-sm-6">
-        <div class="text-muted text-lg">
-          <span class="glyphicon glyphicon-map-marker"></span>
-          <a href="/{{country}}/{{state}}/{{city}}">{{city.toUpperCase}}</a>,
-          <a href="/{{country}}/{{state}}">{{state.toUpperCase}}</a>
-          <span class="glyphicon glyphicon-globe"></span>
-          <a href="/{{country}}">{{country.toUpperCase}}</a>
-          {{#if website}}
-            <br>
-            <span class="glyphicon glyphicon-home"></span>
-            <a href="{{website}}" target="_blank">{{website}}</a>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <div class="text-muted text-lg">
+            <span class="glyphicon glyphicon-map-marker"></span>
+            <a href="/{{country}}/{{state}}/{{city}}">{{city.toUpperCase}}</a>,
+            <a href="/{{country}}/{{state}}">{{state.toUpperCase}}</a>
+            <span class="glyphicon glyphicon-globe"></span>
+            <a href="/{{country}}">{{country.toUpperCase}}</a>
+            {{#if website}}
+              <br>
+              <span class="glyphicon glyphicon-home"></span>
+              <a href="{{website}}" target="_blank">{{website}}</a>
+            {{/if}}
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          {{#if twitter}}
+            <a
+              class="twitter-follow-button pull-right"
+              href="https://twitter.com/{{twitter}}"
+              data-show-count="false"
+              data-lang="en"
+            >
+              Follow @{{twitter}}
+            </a>
+            <script type="text/javascript">
+              window.twttr = (function (d, s, id) {
+                var t, js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src= "https://platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
+                return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } });
+              }(document, "script", "twitter-wjs"));
+            </script>
           {{/if}}
         </div>
       </div>
-      <div class="col-xs-12 col-sm-6">
-        {{#if twitter}}
-          <a
-            class="twitter-follow-button pull-right"
-            href="https://twitter.com/{{twitter}}"
-            data-show-count="false"
-            data-lang="en"
-          >
-            Follow @{{twitter}}
-          </a>
-          <script type="text/javascript">
-            window.twttr = (function (d, s, id) {
-              var t, js, fjs = d.getElementsByTagName(s)[0];
-              if (d.getElementById(id)) return;
-              js = d.createElement(s); js.id = id;
-              js.src= "https://platform.twitter.com/widgets.js";
-              fjs.parentNode.insertBefore(js, fjs);
-              return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } });
-            }(document, "script", "twitter-wjs"));
-          </script>
-        {{/if}}
-      </div>
+      <hr>
       <p class="lead">{{description}}</p>
     </div>
   </div>
